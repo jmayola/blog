@@ -29,12 +29,13 @@ import {
 import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
-import { dashboard } from '@/routes';
+import { dashboard, login, register } from '@/routes';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
+import UserNotSignin from './user-not-signin';
 
 const mainNavItems: NavItem[] = [
     {
@@ -239,6 +240,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             </div>
                         </div>
                         <DropdownMenu>
+                            {auth.user ? <>
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="ghost"
@@ -257,7 +259,8 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56" align="end">
                                 <UserMenuContent user={auth.user} />
-                            </DropdownMenuContent>
+                            </DropdownMenuContent> </> : <UserNotSignin/>
+                            }
                         </DropdownMenu>
                     </div>
                 </div>

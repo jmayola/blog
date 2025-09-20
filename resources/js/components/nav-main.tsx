@@ -3,7 +3,7 @@ import {
     SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem,
+    SidebarMenuItem,SidebarProvider
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
@@ -25,10 +25,7 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                             )}
                             tooltip={{ children: item.title }}
                         >
-                            <Link href={item.href} prefetch>
-                                {item.icon && <item.icon />}
-                                <span>{item.title}</span>
-                            </Link>
+                            
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 ))}
