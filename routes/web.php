@@ -8,9 +8,8 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
-Route::get('/blog', function () {
-    return Inertia::render('blog');
-})->name('blog');
+Route::get('/blog', [App\Http\Controllers\BlogController::class,"index"])->name('blog');
+Route::post('/blog', [App\Http\Controllers\BlogController::class,"store"])->name('blog.store');
 
 Route::get('/suma', function(){
     return Inertia::render('suma');

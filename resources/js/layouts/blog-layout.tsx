@@ -1,13 +1,9 @@
-import { Link } from '@inertiajs/react'
+import { AppHeader } from '@/components/app-header'
 
-export default function Layout({ children } : React.PropsWithChildren) {
+export default function BlogLayout({ children } : React.PropsWithChildren) {
   return (
     <main>
-      <header>
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/contact">Contact</Link>
-      </header>
+      <AppHeader />
       <article>{children}</article>
     </main>
   )
