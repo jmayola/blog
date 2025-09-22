@@ -22,20 +22,30 @@ class BlogController extends Controller
     {
         $request["user_id"] = $request->user()->id;
 
-        Blog::create($request->validate([
-            'body' => ['required', 'max:3000'],
-            'description' => ['max:300', "min:20"],
-            'title' => ['required', 'max:300'],
-            'public' => ['required'],
-            'image_path' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Max 2MB
-        ]));
+        if ($request->public == 'on') {
+            $request["public"] = true;
+        };
 
-        $request->file('image')->store('images', 'public');
+        $validated = $request->validate([
+            'body' => ['required', 'max:3000'],
+            'description' => ['max:300'],
+            'title' => ['required', 'max:300'],
+            'public' => ['required', 'boolean'],
+            'image_path' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'user_id' => ['required']
+        ]);
+
+        $path = $request->file('image_path')->store('images', 'public');
+
+        $validated['image_path'] = $path;
+
+        Blog::create($validated);
 
         return redirect()->route('blog')->with('success', 'Image uploaded successfully!');
     }
 
-    public function add() {
+    public function add()
+    {
         return Inertia::render("blogs/NewBlog");
     }
 }

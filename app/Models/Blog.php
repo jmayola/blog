@@ -8,4 +8,5 @@ class Blog extends Model
 {
     //
     protected $primaryKey = 'id';
+    protected $guarded = array();
 }

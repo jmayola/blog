@@ -15,6 +15,7 @@ function NewBlog() {
                 action="/blog"
                 method="post"
                 className="m-auto flex w-[50%] flex-col justify-center gap-6 p-6"
+                enctype="multipart/form-data"
             >
                 {({ processing, errors }) => (
                     <>
@@ -47,7 +48,7 @@ function NewBlog() {
                             <div className="grid gap-2">
                                 <Label htmlFor="body">Content</Label>
                                 <Textarea
-                                    id="content"
+                                    id="body"
                                     name="body"
                                     data-slot="input"
                                     className="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:aria-invalid:ring-destructive/40"
@@ -69,17 +70,16 @@ function NewBlog() {
                                     tabIndex={3}
                                     placeholder="great photo!"
                                 />
-                                <InputError message={errors.description} />
+                                <InputError message={errors.image_path} />
                             </div>
 
                             <div className="flex items-center space-x-3">
                                 <Label htmlFor="public">Make it public</Label>
                                 <Input
-                                    id="description"
+                                    id="public"
                                     type="checkbox"
                                     name="public"
                                     tabIndex={4}
-                                    placeholder="great photo!"
                                 />
                                 <InputError message={errors.public} />
                             </div>
