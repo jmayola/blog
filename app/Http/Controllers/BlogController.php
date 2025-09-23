@@ -17,13 +17,26 @@ class BlogController extends Controller
         }
         return Inertia::render("blog", ['results' => $blogs]);
     }
-
+    public function id(string $title)
+    {
+        $blog = Blog::firstWhere("title",$title);
+        if ($blog){
+            $blog->name = User::where("id", $blog->user_id)->get()[0]->name;
+            return Inertia::render("blogs/ViewBlog", $blog);
+        }else{
+            return redirect()->route('blog')->with('failure', 'Blog wasn\'t found');
+        };
+    }
     public function store(Request $request)
     {
         $request["user_id"] = $request->user()->id;
 
         if ($request->public == 'on') {
             $request["public"] = true;
+        }
+        else{
+            $request["public"] = false;
+
         };
 
         $validated = $request->validate([
@@ -41,7 +54,7 @@ class BlogController extends Controller
 
         Blog::create($validated);
 
-        return redirect()->route('blog')->with('success', 'Image uploaded successfully!');
+        return redirect()->route('blog')->with('success', 'Blog added successfully!');
     }
 
     public function add()

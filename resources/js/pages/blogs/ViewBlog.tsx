@@ -1,32 +1,25 @@
 import BlogLayout from "@/layouts/blog-layout";
 import { cn } from "@/lib/utils";
-import { Link } from "@inertiajs/react";
 
 type Results = {
-    results: [{
         title: string,
         description: string,
+        body: string,
         name: string,
         image_path: string
-    }]
 }
 
 export default function Dashboard(res: Results) {
+    const val = res
     return (
         <BlogLayout>
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className={"flex flex-wrap columns-3  w-[80%] m-auto place-content-stretch"}>
-                {res.results.map((val)=>{
-                    return(
-                        <Link href={"/blog/" + val.title}>
-                        <div className="bg-gray-200 rounded-3xl p-3 m-5">
+                <div className={cn(`flex w-[80%] m-auto place-content-stretch flex-col`)}>
                         <img src={"/storage/" + val.image_path} alt="" />
-                        <h1>{val.title}</h1>
+                        <h1 className="font-bold text-6xl">{val.title}</h1>
+                        {val.description}
+                        {val.body}
                         <span>Author: {val.name}</span>
-                        </div>
-                        </Link>
-                    )
-                })}
                 </div>
             </div>
         </BlogLayout>
