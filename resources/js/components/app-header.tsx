@@ -31,11 +31,12 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { dashboard,  blog, home } from '@/routes';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { Book, BookOpen, Folder, House, LayoutGrid, Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 import UserNotSignin from './user-not-signin';
+import { useState } from 'react';
 
 const mainNavItems: NavItem[] = [
     {
@@ -75,10 +76,17 @@ interface AppHeaderProps {
     breadcrumbs?: BreadcrumbItem[];
 }
 
+
 export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
     const page = usePage<SharedData>();
     const { auth } = page.props;
     const getInitials = useInitials();
+
+    const [searchValue, setSearchValue] = useState("")
+
+    const handleSearch = () =>{
+        router("/blog",{search: searchValue}, { replace: true })
+    }
     return (
         <>
             <div className="border-b border-sidebar-border/80">
@@ -208,6 +216,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                 variant="ghost"
                                 size="icon"
                                 className="group h-9 w-9 cursor-pointer"
+                                onClick={handleSearch}
                             >
                                 <Search className="!size-5 opacity-80 group-hover:opacity-100" />
                             </Button>
