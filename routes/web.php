@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::get('/blog', [App\Http\Controllers\BlogController::class, "index"])->name('blog');
 Route::get('/blog/{title}', [App\Http\Controllers\BlogController::class, "id"])->name('blog.id');
+Route::get('/blog/search/{search}', [App\Http\Controllers\BlogController::class, "search"])->name('blog.search');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/blog/new', [App\Http\Controllers\BlogController::class, "add"])->name('blog.add');

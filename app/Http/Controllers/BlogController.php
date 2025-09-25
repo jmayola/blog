@@ -17,6 +17,13 @@ class BlogController extends Controller
         }
         return Inertia::render("blog", ['results' => $blogs]);
     }
+    public function search(Request $request){
+        if($request->search == ''){
+            return redirect('/blog');
+        }
+        $query = Blog::where('title','like','%'. $request->search .'%');
+        return Inertia::render("blog", ['results' => $query]);
+    }
     public function id(string $title)
     {
         $blog = Blog::firstWhere("title",$title);

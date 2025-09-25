@@ -82,10 +82,10 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
     const { auth } = page.props;
     const getInitials = useInitials();
 
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState("asd")
 
     const handleSearch = () =>{
-        router("/blog",{search: searchValue}, { replace: true })
+        router.get("/blog",{search: searchValue}, { replace: true })
     }
     return (
         <>
