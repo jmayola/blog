@@ -9,12 +9,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/blog', [App\Http\Controllers\BlogController::class, "index"])->name('blog');
-Route::get('/blog/{title}', [App\Http\Controllers\BlogController::class, "id"])->name('blog.id');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/blog/new', [App\Http\Controllers\BlogController::class, "add"])->name('blog.add');
     Route::post('/blog', [App\Http\Controllers\BlogController::class, "store"])->name('blog.store');
 });
+Route::get('/blog/{title}', [App\Http\Controllers\BlogController::class, "id"])->name('blog.id');
+
 
 Route::get('/suma', function () {
     return Inertia::render('suma');

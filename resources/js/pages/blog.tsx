@@ -1,4 +1,3 @@
-'';
 import Blog, { BlogType } from '@/components/Blog';
 import BlogLayout from '@/layouts/blog-layout';
 import { useEffect, useState } from 'react';
@@ -25,7 +24,7 @@ export default function Dashboard({ results }: BlogResult) {
         <BlogLayout>
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 {Search && (
-                    <span className="text-4xl text-black m-auto">
+                    <span className="text-2xl lg:text-4xl text-black m-auto">
                         Resultados de la busqueda
                     </span>
                 )}
