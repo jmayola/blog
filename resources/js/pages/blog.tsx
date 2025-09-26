@@ -31,7 +31,7 @@ export default function Dashboard({ results }: BlogResult) {
                 )}
                 <div
                     className={
-                        'm-auto flex w-[80%] columns-3 flex-wrap place-content-stretch'
+                        'm-auto grid w-[80vw] grid-cols-3 place-content-stretch gap-5'
                     }
                 >
                     {results.map((val) => {

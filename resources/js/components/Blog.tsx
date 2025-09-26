@@ -20,15 +20,15 @@ export type BlogResultType = {
 
 function Blog({results}: BlogType ) {
     return (
-        <div className="lg:w-[33%] lg:h-[33%]">
-            <Link href={'/blog/' + results.title}>
-                <div className="m-5 rounded-3xl bg-gray-200 p-3">
+        <>
+            <Link href={'/blog/' + results.title} className="rounded-3xl bg-gray-200 p-3">
+                <div >
                     <img src={'/storage/' + results.image_path} alt="" />
                     <h1>{results.title}</h1>
                     <span>Author: {results.name}</span>
                 </div>
             </Link>
-        </div>
+        </>
     );
 }
 
