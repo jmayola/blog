@@ -1,32 +1,42 @@
-import BlogLayout from "@/layouts/blog-layout";
-import { cn } from "@/lib/utils";
-import { Link } from "@inertiajs/react";
+'';
+import Blog, { BlogType } from '@/components/Blog';
+import BlogLayout from '@/layouts/blog-layout';
+import { useEffect, useState } from 'react';
 
-type Results = {
-    results: [{
-        title: string,
-        description: string,
-        name: string,
-        image_path: string
-    }]
-}
+type ArrayObject<T> = {
+    [P in keyof T]: [T[P]];
+};
 
-export default function Dashboard(res: Results) {
+type BlogResult = ArrayObject<BlogType>;
+
+export default function Dashboard({ results }: BlogResult) {
+    // detect if search mode is enabled
+    const [Search, SetSearch] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            var arr = location.href.split('?');
+            if (arr.length > 1 && arr[1] !== '') {
+                SetSearch(true);
+            }
+        }, 2000);
+    }, []);
+
     return (
         <BlogLayout>
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className={"flex flex-wrap columns-3  w-[80%] m-auto place-content-stretch"}>
-                {res.results.map((val)=>{
-                    return(
-                        <Link href={"/blog/" + val.title}>
-                        <div className="bg-gray-200 rounded-3xl p-3 m-5">
-                        <img src={"/storage/" + val.image_path} alt="" />
-                        <h1>{val.title}</h1>
-                        <span>Author: {val.name}</span>
-                        </div>
-                        </Link>
-                    )
-                })}
+                {Search && (
+                    <span className="text-4xl text-black m-auto">
+                        Resultados de la busqueda
+                    </span>
+                )}
+                <div
+                    className={
+                        'm-auto flex w-[80%] columns-3 flex-wrap place-content-stretch'
+                    }
+                >
+                    {results.map((val) => {
+                        return <Blog results={val} />;
+                    })}
                 </div>
             </div>
         </BlogLayout>

@@ -7,32 +7,39 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use function Illuminate\Log\log;
+
 class BlogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // filter search parameters
+        $search = $request->query("search", null);
+        if ($search != null) {
+            $query = Blog::where('title', 'like', '%' . $search . '%')->orWhere('title', 'like', '%' . $search . '%')->get();
+            if ($query->count() > 0) {
+                foreach ($query as $blog) {
+                    $blog->name = User::where("id", $blog->user_id)->get()[0]->name;
+                    return Inertia::render("blog", ['results' => $query]);
+                }
+            }
+        }
         $blogs = Blog::all();
         foreach ($blogs as $blog) {
             $blog->name = User::where("id", $blog->user_id)->get()[0]->name;
         }
         return Inertia::render("blog", ['results' => $blogs]);
     }
-    public function search(Request $request){
-        if($request->search == ''){
-            return redirect('/blog');
-        }
-        $query = Blog::where('title','like','%'. $request->search .'%');
-        return Inertia::render("blog", ['results' => $query]);
-    }
     public function id(string $title)
     {
-        $blog = Blog::firstWhere("title",$title);
-        if ($blog){
+        $blog = Blog::firstWhere("title", $title);
+        if ($blog) {
             $blog->name = User::where("id", $blog->user_id)->get()[0]->name;
             return Inertia::render("blogs/ViewBlog", $blog);
-        }else{
+        } else {
             return redirect()->route('blog')->with('failure', 'Blog wasn\'t found');
-        };
+        }
+        ;
     }
     public function store(Request $request)
     {
@@ -40,11 +47,11 @@ class BlogController extends Controller
 
         if ($request->public == 'on') {
             $request["public"] = true;
-        }
-        else{
+        } else {
             $request["public"] = false;
 
-        };
+        }
+        ;
 
         $validated = $request->validate([
             'body' => ['required', 'max:3000'],
