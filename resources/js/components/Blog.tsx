@@ -20,15 +20,17 @@ export type BlogResultType = {
 
 function Blog({results}: BlogType ) {
     return (
-        <>
-            <Link href={'/blog/' + results.title} className="rounded-3xl bg-gray-200 p-3">
-                <div className="">
-                    <img src={'/storage/' + results.image_path} alt="" className="object-cover w-[inherit] h-[300px] rounded-3xl m-auto" />
-                    <h1 className="text-wrap text-2xl font-bold">{results.title}</h1>
-                    <span>Author: {results.name}</span>
+        <div className="overflow-ellipsis bg-gray-200 min-h-[300px]">
+                    <img src={'/storage/' + results.image_path} alt="" className="object-cover m-auto" />
+
+            <Link href={'/blog/' + results.title} className="">
+
+                <div className="p-3">
+                    <h1 className="text-2xl font-bold overflow-clip ">{results.title}</h1>
+                    {/* <span>Author: {results.name}</span> */}
                 </div>
             </Link>
-        </>
+        </div>
     );
 }
 

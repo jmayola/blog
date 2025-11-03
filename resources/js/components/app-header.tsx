@@ -29,21 +29,24 @@ import {
 import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
-import { dashboard,  blog, home } from '@/routes';
+import { blog, dashboard, home } from '@/routes';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, router, usePage } from '@inertiajs/react';
-import { Book, BookOpen, Folder, House, LayoutGrid, Menu, Search } from 'lucide-react';
+import {
+    Book,
+    BookOpen,
+    Folder,
+    House,
+    LayoutGrid,
+    Menu,
+    Search,
+} from 'lucide-react';
+import { useState } from 'react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 import UserNotSignin from './user-not-signin';
-import { useState } from 'react';
 
 const mainNavItems: NavItem[] = [
-    {
-        title: 'Home',
-        href: home(),
-        icon: House,
-    },
     {
         title: 'Dashboard',
         href: dashboard(),
@@ -53,7 +56,7 @@ const mainNavItems: NavItem[] = [
         title: 'General',
         href: blog(),
         icon: Book,
-    }
+    },
 ];
 
 const rightNavItems: NavItem[] = [
@@ -76,17 +79,16 @@ interface AppHeaderProps {
     breadcrumbs?: BreadcrumbItem[];
 }
 
-
 export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
     const page = usePage<SharedData>();
     const { auth } = page.props;
     const getInitials = useInitials();
 
-    const [searchValue, setSearchValue] = useState("asd")
+    const [searchValue, setSearchValue] = useState('asd');
 
-    const handleSearch = () =>{
-        router.get("/blog",{search: searchValue}, { replace: true })
-    }
+    const handleSearch = () => {
+        router.get('/blog', { search: searchValue }, { replace: true });
+    };
     return (
         <>
             <div className="border-b border-sidebar-border/80">
@@ -164,9 +166,15 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     </div>
 
                     <Link
-                        href={dashboard()}
+                        href={home()}
                         prefetch
-                        className="flex items-center space-x-2"
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            page.url === '/' &&
+                                                    activeItemStyles,
+                            'h-9 cursor-pointer px-3',
+                            'flex items-center space-x-2',
+                        )}
                     >
                         <AppLogo />
                     </Link>
@@ -259,27 +267,36 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             </div>
                         </div>
                         <DropdownMenu>
-                            {auth.user ? <>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    className="size-10 rounded-full p-1"
-                                >
-                                    <Avatar className="size-8 overflow-hidden rounded-full">
-                                        <AvatarImage
-                                            src={auth.user.avatar}
-                                            alt={auth.user.name}
-                                        />
-                                        <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                            {getInitials(auth.user.name)}
-                                        </AvatarFallback>
-                                    </Avatar>
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56" align="end">
-                                <UserMenuContent user={auth.user} />
-                            </DropdownMenuContent> </> : <UserNotSignin/>
-                            }
+                            {auth.user ? (
+                                <>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button
+                                            variant="ghost"
+                                            className="size-10 rounded-full p-1"
+                                        >
+                                            <Avatar className="size-8 overflow-hidden rounded-full">
+                                                <AvatarImage
+                                                    src={auth.user.avatar}
+                                                    alt={auth.user.name}
+                                                />
+                                                <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                                    {getInitials(
+                                                        auth.user.name,
+                                                    )}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent
+                                        className="w-56"
+                                        align="end"
+                                    >
+                                        <UserMenuContent user={auth.user} />
+                                    </DropdownMenuContent>{' '}
+                                </>
+                            ) : (
+                                <UserNotSignin />
+                            )}
                         </DropdownMenu>
                     </div>
                 </div>

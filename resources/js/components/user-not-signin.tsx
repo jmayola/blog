@@ -1,21 +1,57 @@
 import { login, register } from '@/routes';
+
 import { Link } from '@inertiajs/react';
 import { Button } from './ui/button';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from './ui/navigation-menu';
+import { cn } from '@/lib/utils';
+import { Icon } from './icon';
+import { NavItem } from '@/types';
+
+const activeItemStyles =
+    'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
+
+const mainNavItems: NavItem[] = [
+    {
+        title: 'Sign In',
+        href: register(),
+    },
+    {
+        title: 'Login',
+        href: login(),
+    }
+];
 
 function UserNotSignin() {
     return (
-        <>
-            <Link className="flex items-center space-x-4 mx-3 bg-gray-100 hover:bg-gray-200 hover:border-2 border-gray-200 rounded-md" href={register()}>
-                <Button variant="ghost" className="p-1 text-lg">
-                    Register
-                </Button>
-            </Link>
-            <Link className="flex items-center space-x-4 mx-3 bg-gray-100 hover:bg-gray-200 hover:border-2 border-gray-200 rounded-md" href={login()}>
-                <Button variant="ghost" className="p-1 text-lg">
-                    Login
-                </Button>
-            </Link>
-        </>
+<div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
+                        <NavigationMenu className="flex h-full items-stretch">
+                            <NavigationMenuList className="flex h-full items-stretch space-x-2">
+                                {mainNavItems.map((item, index) => (
+                                    <NavigationMenuItem
+                                        key={index}
+                                        className="relative flex h-full items-center"
+                                    >
+                                        <Link
+                                            href={item.href}
+                                            className={cn(
+                                                navigationMenuTriggerStyle(),
+                                                    activeItemStyles,
+                                                'h-9 cursor-pointer px-3',
+                                            )}
+                                        >
+                                            {item.icon && (
+                                                <Icon
+                                                    iconNode={item.icon}
+                                                    className="mr-2 h-4 w-4"
+                                                />
+                                            )}
+                                            {item.title}
+                                        </Link>
+                                    </NavigationMenuItem>
+                                ))}
+                            </NavigationMenuList>
+                        </NavigationMenu>
+                    </div>
     );
 }
 
