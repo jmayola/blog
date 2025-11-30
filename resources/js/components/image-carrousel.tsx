@@ -65,7 +65,7 @@ export default function ImageCarrousel({ items, className, ...props }: React.Com
             });
     }, []);
 
-    // Efecto de parallax en hover
+    // parallax effect on hover
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!rootRef.current) return;
         
@@ -101,8 +101,8 @@ export default function ImageCarrousel({ items, className, ...props }: React.Com
             id='carrousel' 
             ref={rootRef}
             className={cn(
-                "grid grid-cols-3 gap-2 auto-rows-min overflow-hidden cursor-pointer",
-                "perspective-1000", // Necesitarás esta clase en tu CSS
+                "grid grid-cols-3 gap-2 p-10 auto-rows-min overflow-hidden cursor-pointer",
+                "perspective-1000",
                 className
             )} 
             onMouseMove={handleMouseMove}
@@ -114,7 +114,7 @@ export default function ImageCarrousel({ items, className, ...props }: React.Com
                     key={i} 
                     src={val.src} 
                     alt={val.title ?? "mayola's image"} 
-                    className="image-card transform-style-preserve-3d" // Clase para CSS 3D
+                    className="image-card transform-style-preserve-3d" 
                 />
             ))}
         </div>

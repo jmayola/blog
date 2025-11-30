@@ -9,6 +9,8 @@ import { show } from '@/routes/two-factor';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
+import 'trix/dist/trix.css';
+import 'trix';
 
 const sidebarNavItems: NavItem[] = [
     {

@@ -1,38 +1,41 @@
-import { Link } from "@inertiajs/react";
-import React from 'react'
+import { Link } from '@inertiajs/react';
 
 export type BlogType = {
     results: {
-        title: string,
-        description: string,
-        name: string,
-        image_path: string
-    }
-}
+        title: string;
+        description: string;
+        name: string;
+        image_path: string;
+    };
+};
 export type BlogResultType = {
-    results: [{
-        title: string,
-        description: string,
-        name: string,
-        image_path: string
-    }]
-}
+    results: [
+        {
+            title: string;
+            description: string;
+            name: string;
+            image_path: string;
+        },
+    ];
+};
 
-function Blog({results}: BlogType ) {
+function Blog({ results }: BlogType) {
     return (
-        <div className="overflow-ellipsis bg-gray-200 min-h-[300px]">
-                    <img src={'/storage/' + results.image_path} alt="" className="object-cover m-auto" />
-
+        <>
             <Link href={'/blog/' + results.title} className="">
-
-                <div className="p-3">
-                    <h1 className="text-2xl font-bold overflow-clip ">{results.title}</h1>
-                    {/* <span>Author: {results.name}</span> */}
+                 <img
+                    src={'/storage/' + results.image_path}
+                    alt=""
+                    className="m-auto object-cover"
+                />
+                <div className="p-3 absolute bottom-0 bg-gray-300/60 hover:h-full transition-all backdrop-blur-xs w-full">
+                    <h1 className="overflow-clip text-2xl font-bold text-shadow-pink-400 hover:text-pink-400 text-shadow-2xs text-gray-900">
+                        {results.title}
+                    </h1>
                 </div>
             </Link>
-        </div>
+        </>
     );
 }
-
 
 export default Blog;

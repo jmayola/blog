@@ -211,8 +211,89 @@ homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 home.form = homeForm
 
 /**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: dashboard.url(options),
+    method: 'get',
+})
+
+dashboard.definition = {
+    methods: ["get","head"],
+    url: '/dashboard',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+dashboard.url = (options?: RouteQueryOptions) => {
+    return dashboard.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: dashboard.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: dashboard.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+const dashboardForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: dashboard.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+dashboardForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: dashboard.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\BlogController::dashboard
+* @see app/Http/Controllers/BlogController.php:13
+* @route '/dashboard'
+*/
+dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: dashboard.url({
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+dashboard.form = dashboardForm
+
+/**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 export const blog = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -227,7 +308,7 @@ blog.definition = {
 
 /**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 blog.url = (options?: RouteQueryOptions) => {
@@ -236,7 +317,7 @@ blog.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 blog.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -246,7 +327,7 @@ blog.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 blog.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -256,7 +337,7 @@ blog.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 const blogForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -266,7 +347,7 @@ const blogForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 blogForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -276,7 +357,7 @@ blogForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::blog
-* @see app/Http/Controllers/BlogController.php:14
+* @see app/Http/Controllers/BlogController.php:13
 * @route '/blog'
 */
 blogForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -290,154 +371,6 @@ blogForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 })
 
 blog.form = blogForm
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-export const suma = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: suma.url(options),
-    method: 'get',
-})
-
-suma.definition = {
-    methods: ["get","head"],
-    url: '/suma',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-suma.url = (options?: RouteQueryOptions) => {
-    return suma.definition.url + queryParams(options)
-}
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-suma.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: suma.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-suma.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: suma.url(options),
-    method: 'head',
-})
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-const sumaForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: suma.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-sumaForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: suma.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/web.php:19
-* @route '/suma'
-*/
-sumaForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: suma.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-suma.form = sumaForm
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: dashboard.url(options),
-    method: 'get',
-})
-
-dashboard.definition = {
-    methods: ["get","head"],
-    url: '/dashboard',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-dashboard.url = (options?: RouteQueryOptions) => {
-    return dashboard.definition.url + queryParams(options)
-}
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: dashboard.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: dashboard.url(options),
-    method: 'head',
-})
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-const dashboardForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: dashboard.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-dashboardForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: dashboard.url(options),
-    method: 'get',
-})
-
-/**
-* @see routes/web.php:31
-* @route '/dashboard'
-*/
-dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-    action: dashboard.url({
-        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'HEAD',
-            ...(options?.query ?? options?.mergeQuery ?? {}),
-        }
-    }),
-    method: 'get',
-})
-
-dashboard.form = dashboardForm
 
 /**
 * @see \App\Http\Controllers\Auth\RegisteredUserController::register

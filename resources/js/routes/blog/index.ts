@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 export const add = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ add.definition = {
 
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 add.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ add.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 add.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ add.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 const addForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -55,7 +55,7 @@ const addForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 addForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -65,7 +65,7 @@ addForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::add
-* @see app/Http/Controllers/BlogController.php:74
+* @see app/Http/Controllers/BlogController.php:65
 * @route '/blog/new'
 */
 addForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -82,7 +82,7 @@ add.form = addForm
 
 /**
 * @see \App\Http\Controllers\BlogController::store
-* @see app/Http/Controllers/BlogController.php:44
+* @see app/Http/Controllers/BlogController.php:41
 * @route '/blog'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -97,7 +97,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\BlogController::store
-* @see app/Http/Controllers/BlogController.php:44
+* @see app/Http/Controllers/BlogController.php:41
 * @route '/blog'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -106,7 +106,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\BlogController::store
-* @see app/Http/Controllers/BlogController.php:44
+* @see app/Http/Controllers/BlogController.php:41
 * @route '/blog'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -116,7 +116,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\BlogController::store
-* @see app/Http/Controllers/BlogController.php:44
+* @see app/Http/Controllers/BlogController.php:41
 * @route '/blog'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -126,7 +126,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\BlogController::store
-* @see app/Http/Controllers/BlogController.php:44
+* @see app/Http/Controllers/BlogController.php:41
 * @route '/blog'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -138,7 +138,7 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 export const id = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -153,7 +153,7 @@ id.definition = {
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 id.url = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -180,7 +180,7 @@ id.url = (args: { title: string | number } | [title: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 id.get = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -190,7 +190,7 @@ id.get = (args: { title: string | number } | [title: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 id.head = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -200,7 +200,7 @@ id.head = (args: { title: string | number } | [title: string | number ] | string
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 const idForm = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -210,7 +210,7 @@ const idForm = (args: { title: string | number } | [title: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 idForm.get = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -220,7 +220,7 @@ idForm.get = (args: { title: string | number } | [title: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\BlogController::id
-* @see app/Http/Controllers/BlogController.php:33
+* @see app/Http/Controllers/BlogController.php:31
 * @route '/blog/{title}'
 */
 idForm.head = (args: { title: string | number } | [title: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

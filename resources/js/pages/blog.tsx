@@ -19,7 +19,7 @@ export default function Dashboard({ results }: BlogResult) {
             }
         }, 2000);
     }, []);
-
+    console.debug(results)
     return (
         <BlogLayout>
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">

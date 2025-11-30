@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string("title",300);
-            $table->longText("body");
+            $table->json("body");
             $table->tinyText("description");
             $table->string("image_path");
             $table->boolean("public");
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('blogs');
+        Schema::dropIfExists('blogs');
     }
 };

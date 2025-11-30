@@ -1,4 +1,5 @@
 import { AppHeader } from '@/components/app-header';
+import Footer from '@/components/Footer';
 import ImageCarrousel, {ImageCarrouselItem} from '@/components/image-carrousel';
 import { Head } from '@inertiajs/react';
 import { animate, splitText, stagger, type Scope } from 'animejs';
@@ -68,7 +69,7 @@ export default function Welcome() {
         );
     }, []);
     return (
-        <>
+        <div className='max-h-screen'>
             <Head title="Bienvenido! - Mayola's Blog">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
@@ -80,7 +81,7 @@ export default function Welcome() {
             <div
                 ref={rootRef}
                 id="base"
-                className="w-screen text-left grid grid-cols-2 place-content-around place-items-center p-5"
+                className="w-screen text-left grid grid-cols-2 place-content-around place-items-center"
             >
               <div className='flex flex-col place-content-center'>
                 <span id="welcome" className="p-2 text-8xl font-extrabold">
@@ -92,9 +93,7 @@ export default function Welcome() {
                 </div>
                 <ImageCarrousel items={Images}></ImageCarrousel>
             </div>
-            <div>
-
-            </div>
-        </>
+            <Footer/>
+        </div>
     );
 }

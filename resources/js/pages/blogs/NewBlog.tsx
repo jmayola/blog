@@ -1,10 +1,9 @@
 import InputError from '@/components/input-error';
+import TrixInput from '@/components/TrixInput';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import BlogLayout from '@/layouts/blog-layout';
-import { Textarea } from '@headlessui/react';
 import { Form } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 
@@ -47,16 +46,16 @@ function NewBlog() {
 
                             <div className="grid gap-2">
                                 <Label htmlFor="body">Content</Label>
-                                <Textarea
-                                    id="body"
-                                    name="body"
-                                    data-slot="input"
-                                    className="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:aria-invalid:ring-destructive/40"
-                                    required
+                                      <TrixInput
+                                            id="body"
+                                            name="body"
+                                            className="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:aria-invalid:ring-destructive/40"
+                                            data-slot="input"
+                                            required
                                     autoFocus
                                     tabIndex={3}
                                     placeholder="Here is the story..."
-                                />
+                                        />
                                 <InputError message={errors.body} />
                             </div>
 
